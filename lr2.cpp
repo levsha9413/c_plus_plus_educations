@@ -27,7 +27,6 @@ int main() {
         cout << endl;
     }
 
-    cout << "Минимум матрицы:" << endl;
     float minMatrix = matrix[N-1][N-1];
     float maxMatrix = matrix[0][0];
     for (int i = 0; i < N; ++i) {
@@ -47,6 +46,7 @@ int main() {
     float minVTMatrix = matrix[0][0];
     float maxVTMatrix = matrix[0][0];
     float summVT=0;
+    int counterVT=0;
     for (int i = 0; i < N; ++i) { //строка
         for (int j = i; j < N; ++j) { //столбцы
             if (matrix[i][j] < minVTMatrix){
@@ -56,11 +56,15 @@ int main() {
                 maxVTMatrix = matrix[i][j];
             }
             summVT+=matrix[i][j];
+            ++counterVT;
         }
     }
+    float averageVT = summVT/counterVT;
     cout << "Mинимум верхнеугольной части матрицы: " << minVTMatrix << endl;
     cout << "Максимум верхнеугольной части матрицы: " << maxVTMatrix << endl;
     cout << "Сумма элементов верхнеугольной части матрицы: " << summVT << endl;
+    cout << "Среднее арифметическое значение элементов верхнетреугольной части: " << averageVT << endl;
+
 
 
 
@@ -68,20 +72,25 @@ int main() {
     float minNTMatrix = matrix[0][0];
     float maxNTMatrix = matrix[0][0];
     float summNT=0;
+    int counterNT=0;
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j <= i; ++j) {
             if (matrix[i][j] < minVTMatrix){
                 minNTMatrix = matrix[i][j];
             }
-            if(matrix[i][j] > maxVTMatrix){
+            if(matrix[i][j] > maxNTMatrix){
                 maxNTMatrix = matrix[i][j];
             }
             summNT+=matrix[i][j];
+            ++counterNT;
         }
     }
+    float averageNT = summNT/counterNT;
     cout << "Mинимум нижнеугольной части матрицы: " << minNTMatrix << endl;
     cout << "Максимум нижнеугольной части матрицы: " << maxNTMatrix << endl;
     cout << "Сумма элементов нижнеугольной части матрицы: " << summVT << endl;
+    cout << "Среднее арифметическое значение элементов нижнетреугольной части:"<< averageNT << endl;
+
 
 
     cout << "\n_________Главная диагональ:_________" << endl;
@@ -112,7 +121,7 @@ int main() {
     cout << "Mинимум побочной диагонали матрицы: " << minSlaveD << endl;
     cout << "Максимум побочной диагонали матрицы: " << maxSlaveD << endl;
 
-    cout << "\n_________Среднее арифметическое значение элементов:_________" << endl;
+    cout << "\n_________Среднее арифметическое значение элементов матрицы:_________" << endl;
     float summ = 0;
     int counter=0;
     for (int i = 0; i < N; ++i) {
@@ -123,28 +132,6 @@ int main() {
     }
     float averageMatrix = summ/counter;
     cout << averageMatrix <<endl;
-
-    cout << "\n_________Среднее арифметическое значение элементов нижнетреугольной части:_________" << endl;
-    float summNT = 0;
-    int counterNT=0;
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j <= i; ++j) {
-            summNT+=matrix[i][j];
-            ++counterNT;
-        }
-    }
-    cout << summNT/counterNT << endl;
-
-    cout << "\n_________Среднее арифметическое значение элементов верхнетреугольной части:_________" << endl;
-    float summVT = 0;
-    int counterVT=0;
-    for (int i = 0; i < N; ++i) { //строка
-        for (int j = i; j < N; ++j) { //столбцы
-            summVT+=matrix[i][j];
-            ++counterVT;
-        }
-    }
-    cout << summVT/counterVT << endl;
 
     cout<<"__________________Работа со строками___________________________"<<endl;
 
@@ -195,7 +182,7 @@ int main() {
         cout << "Наименьший элемент столбца " << j << " : " << min << "\n" << endl;
     }
 
-    cout << "Элемент минимально отличающийся от среднего:" << endl;
+    cout << "Элемент матрицы, минимально отличающийся от среднего арифметического:" << endl;
     float minDiff = matrix[0][0]-averageMatrix;
     float minDiffElem = NULL;
     for (int i = 0; i < N; ++i) {
