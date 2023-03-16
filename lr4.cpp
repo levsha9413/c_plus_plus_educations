@@ -35,7 +35,7 @@ int LenghtStringByLoopThirdMethod(char message[]){
     return counter;
 }
 void LenghtStrlen(char message[]){
-    cout << "Полученная строка: \n" << message << endl;
+    cout << "\n\n\nПолученная строка: \n" << message << endl;
     cout << "\nДлинна строки, подсчитанная функцией strlen "<< " составляет " << ::strlen(message);
     cout << "\nДлинна строки, подсчитанная функцией LenghtStringByLoop "
          << " составляет " << LenghtStringByLoop(message);
@@ -181,6 +181,7 @@ int main(){
         char str[sizeof(word)/ sizeof(char)];
         strcpy (str, word.c_str());
         CopyStringManualCalloc(str);
+        LenghtStrlen(str);
     }
 }
 
