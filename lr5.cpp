@@ -42,7 +42,7 @@ void SymbolCounter(string path){
     int visibleSymbolCounter = 0;
     int escapeSymbolCounter = 0;
     if (input) {  //если поток открылся без ошибок, то true
-        while (getline(input, line, char(0))) {
+        while (getline(input, line, char(0))) { //0 - NULL символ, чтобы прочитал весь файл
             char symbols[line.size()];
             strcpy(symbols, line.c_str());
             for(auto symbol:symbols){
@@ -62,9 +62,38 @@ void SymbolCounter(string path){
     }
 }
 
+void SubstrinFinder(string path){
+    cout << "Введите искомую строку:\n";
+    string substring;
+    cin >> substring;
+    cout << "Искомая строка: " << substring << endl;
+    cout << "Файл поиска: " << path << endl;
+    ifstream input(path);
+    string line;
+    int numberOfString = 1;
+    int coincidence = 0;
+    if(input){
+        while(getline(input, line)){ //взятие отдельной строки
+            int index = 0;
+            while((index = line.find(substring, index)) != std::string::npos) { //поиск подстроки в строкe
+                ++coincidence;
+                cout << "Совпадение №" << coincidence  <<  ": Строка " << numberOfString << " \"" << line << "\""
+                << " Индекс вхождения: " << index << endl;
+                index += substring.length();
+
+            }
+            ++numberOfString;
+        }
+        cout << "-----------------------\nВсего найдено вхождений: " << coincidence << endl;
+    }else{
+        cout << "File opening error" << endl;
+    }
+} //todo: переделать cout на запись в файл
+
 int main() {
     string pathOfFile = "../hello.txt";
     //readFromFile(pathOfFile);
     //writeToEndOfFile(pathOfFile, 3);
     SymbolCounter(pathOfFile);
+    SubstrinFinder(pathOfFile);
 }
