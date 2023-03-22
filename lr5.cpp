@@ -13,6 +13,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <chrono>
+
 
 using namespace std;
 
@@ -62,12 +64,17 @@ void SymbolCounter(string path){
     }
 }
 
-void SubstrinFinder(string path){
+void SubstringFinder(string path){
+    ofstream outputFile("rezult.txt");
+    time_t real_time = chrono::system_clock::to_time_t(chrono::system_clock::now());
+    outputFile << "Created at " << ctime(&real_time); //перезаписали временем
+    outputFile.setf(ios::app); //переключили в режим дозаписи
+
     cout << "Введите искомую строку:\n";
     string substring;
     cin >> substring;
-    cout << "Искомая строка: " << substring << endl;
-    cout << "Файл поиска: " << path << endl;
+    outputFile << "Искомая строка: " << substring << endl;
+    outputFile << "Файл поиска: " << path << endl;
     ifstream input(path);
     string line;
     int numberOfString = 1;
@@ -77,23 +84,37 @@ void SubstrinFinder(string path){
             int index = 0;
             while((index = line.find(substring, index)) != std::string::npos) { //поиск подстроки в строкe
                 ++coincidence;
-                cout << "Совпадение №" << coincidence  <<  ": Строка " << numberOfString << " \"" << line << "\""
+                outputFile << "Совпадение №" << coincidence  <<  ": Строка " << numberOfString << " \" | " << line << "\""
                 << " Индекс вхождения: " << index << endl;
                 index += substring.length();
 
             }
             ++numberOfString;
         }
-        cout << "-----------------------\nВсего найдено вхождений: " << coincidence << endl;
+        outputFile << "-----------------------\nВсего найдено вхождений: " << coincidence << endl;
     }else{
         cout << "File opening error" << endl;
     }
-} //todo: переделать cout на запись в файл
+}
+
+void CreateFileForTaskFour(string srcPath, string dstFileName, int countOfString){
+    ifstream inputFile(srcPath);
+    ofstream rezultFile("../"+dstFileName );
+    string line;
+    int numberOfString = 1;
+    if (inputFile) {
+        while (countOfString--){
+            getline(inputFile, line, char(0));
+            rezultFile << "-" << numberOfString++ << "-\n" << line << "\f\n\n";
+        }
+    }
+}
 
 int main() {
-    string pathOfFile = "../hello.txt";
-    //readFromFile(pathOfFile);
-    //writeToEndOfFile(pathOfFile, 3);
-    SymbolCounter(pathOfFile);
-    SubstrinFinder(pathOfFile);
+//    string pathOfFile = "../hello.txt";
+//    //readFromFile(pathOfFile);
+//    //writeToEndOfFile(pathOfFile, 3);
+//    SymbolCounter(pathOfFile);
+//    SubstringFinder(pathOfFile);
+    CreateFileForTaskFour("../src", "rezult", 5);
 }
