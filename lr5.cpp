@@ -14,6 +14,8 @@
 #include <fstream>
 #include <string>
 #include <chrono>
+#include <regex>
+#include <stdio.h>
 
 
 using namespace std;
@@ -105,9 +107,82 @@ void CreateFileForTaskFour(string srcPath, string dstFileName, int countOfString
     if (inputFile) {
         while (countOfString--){
             getline(inputFile, line, char(0));
-            rezultFile << "-" << numberOfString++ << "-\n" << line << "\f\n\n";
+            rezultFile << "-" << numberOfString++ << "-\n" << line << "\f\n";
         }
     }
+}
+
+
+
+void test(string srcPath){
+    fstream file(srcPath);
+    file.seekg(1, ios::beg);
+    file.put(NULL);
+    string numbers = "0123456789f\fhhHHHH\f";
+    int x = numbers.find('\f');
+    cout << x++ << endl;
+    cout << numbers.find('\f', x);
+    reverse(srcPath.begin(), srcPath.end());
+    string newFileNAme =  srcPath;
+    //rename(srcPath.c_str(), "old");
+
+}
+
+string PathWithOldLabels(string srcPath){
+    reverse(srcPath.begin(), srcPath.end());
+    string strPathWithOldLabels;
+    if (srcPath.find('.') != std::string::npos & srcPath.find('.') < srcPath.length()-2) {
+        string format = srcPath.substr(0, srcPath.find('.'));
+        string baseName=srcPath.substr(srcPath.find('.')+1, srcPath.length());;
+        reverse(format.begin(), format.end());
+        reverse(baseName.begin(), baseName.end());
+        cout << "format = " << format << endl;
+        cout << "baseName = " << baseName << endl;
+        strPathWithOldLabels = baseName + "_old." + format;
+        cout << "strPathWithOldLabels = " << strPathWithOldLabels << endl;
+    }
+    else {
+        reverse(srcPath.begin(), srcPath.end());
+        strPathWithOldLabels = srcPath + "_old";
+        cout << "strPathWithOldLabels = " << strPathWithOldLabels << endl;
+    }
+    return strPathWithOldLabels;
+}
+
+void ReverseNumberOfList(string srcPath){
+    string srcPath_old = PathWithOldLabels(srcPath);
+    rename(srcPath.c_str(), srcPath_old.c_str());
+    ifstream input(srcPath_old);
+    ofstream output(srcPath, ios::app);
+    string line;
+    cmatch result;
+    regex regular("([\\n]?-)""([\\d]+)""(-\\n)""([.|\\s|\\w|\\S|\\W]*)");
+
+    if (input) {  //если поток открылся без ошибок, то true
+            while (getline(input, line, '\f')) {
+                if(regex_match(line.c_str(), result, regular)) {
+                    cout << "Регулярка отработала" << endl;
+                    for(int i = 0; i< result.size(); ++i){
+                    cout << "I= " << i << " result: " << result[i] << endl;
+                }
+                    output << result[4] << '\n' << result[2] << "\n\f\n";
+
+            }else{
+                    cout << "\nРегулярка не сработала\n";
+                }
+        }
+    }
+
+/*
+ Можно посимвольно записывать или стирать в файл, но как узнать положение символа в который нужно писать.
+ Положение можно узнать с помощью string.find(substing, start_index)
+ 1.Переименовываем файл в *_old
+ 2.Создаем новый файл new c именем исходного
+ 3.Вычитываем из old первую страницу
+ 4.Парсим первую страницу регуляркой разбивая на объекты
+ 5.Записываем в новый файл все объекты кроме номера
+ 6.Отступаем от конца файла 1 байт (\f) и записываем туда номер + \f
+ */
 }
 
 int main() {
@@ -116,5 +191,9 @@ int main() {
 //    //writeToEndOfFile(pathOfFile, 3);
 //    SymbolCounter(pathOfFile);
 //    SubstringFinder(pathOfFile);
-    CreateFileForTaskFour("../src", "rezult", 5);
+//    CreateFileForTaskFour("../src", "rezult", 5);
+    CreateFileForTaskFour("../src", "test.txt", 5);
+
+    // ReverseNumberOfList("../rezult");
+    ReverseNumberOfList("../test.txt");
 }
