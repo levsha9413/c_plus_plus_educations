@@ -66,8 +66,8 @@ void SymbolCounter(string path){
     }
 }
 
-void SubstringFinder(string path){
-    ofstream outputFile("rezult.txt");
+void SubstringFinder(string path, string pathToFileResult){
+    ofstream outputFile(pathToFileResult);
     time_t real_time = chrono::system_clock::to_time_t(chrono::system_clock::now());
     outputFile << "Created at " << ctime(&real_time); //перезаписали временем
     outputFile.setf(ios::app); //переключили в режим дозаписи
@@ -112,8 +112,6 @@ void CreateFileForTaskFour(string srcPath, string dstFileName, int countOfString
     }
 }
 
-
-
 void test(string srcPath){
     fstream file(srcPath);
     file.seekg(1, ios::beg);
@@ -128,7 +126,7 @@ void test(string srcPath){
 
 }
 
-string PathWithOldLabels(string srcPath){
+string PathWithLabels(string srcPath, string postfix){
     reverse(srcPath.begin(), srcPath.end());
     string strPathWithOldLabels;
     if (srcPath.find('.') != std::string::npos & srcPath.find('.') < srcPath.length()-2) {
@@ -138,19 +136,19 @@ string PathWithOldLabels(string srcPath){
         reverse(baseName.begin(), baseName.end());
         cout << "format = " << format << endl;
         cout << "baseName = " << baseName << endl;
-        strPathWithOldLabels = baseName + "_old." + format;
-        cout << "strPathWithOldLabels = " << strPathWithOldLabels << endl;
+        strPathWithOldLabels = baseName + "_" + postfix + "." + format;
+        cout << "strPathWithLabel = " << strPathWithOldLabels << endl;
     }
     else {
         reverse(srcPath.begin(), srcPath.end());
-        strPathWithOldLabels = srcPath + "_old";
-        cout << "strPathWithOldLabels = " << strPathWithOldLabels << endl;
+        strPathWithOldLabels = srcPath + "_" + postfix;
+        cout << "new FILE with label = " << strPathWithOldLabels << endl;
     }
     return strPathWithOldLabels;
 }
 
 void ReverseNumberOfList(string srcPath){
-    string srcPath_old = PathWithOldLabels(srcPath);
+    string srcPath_old = PathWithLabels(srcPath, "old");
     rename(srcPath.c_str(), srcPath_old.c_str());
     ifstream input(srcPath_old);
     ofstream output(srcPath, ios::app);
@@ -180,20 +178,66 @@ void ReverseNumberOfList(string srcPath){
  2.Создаем новый файл new c именем исходного
  3.Вычитываем из old первую страницу
  4.Парсим первую страницу регуляркой разбивая на объекты
- 5.Записываем в новый файл все объекты кроме номера
- 6.Отступаем от конца файла 1 байт (\f) и записываем туда номер + \f
+ 5.Записываем в новый файл все объекты в нужном порядке
  */
+}
+
+void Encoder(string postfixForNewFile){
+    string path;
+    string key;
+    cout << "Введите путь к файлу:" << endl;
+    cin >> path;
+    ifstream inputFile(path);
+    string line;
+    if (inputFile) {  //если поток открылся без ошибок, то true
+        cout << "Файл загружен успешно" << endl;
+    }else{
+        cout << "Не удалось загрузить файл по указанному пути" << endl;
+    }
+    cout << "Введите ключ:" << endl;
+    cin >> key;
+
+    ofstream encryptedFile(PathWithLabels(path, postfixForNewFile));
+    encryptedFile.setf(ios::app);
+    int x = 3;
+    getline(inputFile, line, char(0));
+    int index = 0;
+    //char k = key[index];
+    for(auto alpha : line){
+        if(index<key.length()) {
+            int charCode = int(alpha) ^ int(key[index++]);
+            encryptedFile << char(charCode);
+
+
+        }else{
+            index = 0;
+            int charCode = int(alpha) ^ int(key[index++]);
+            encryptedFile << char(charCode);
+        }
+    }
+    encryptedFile.close();
+
+
 }
 
 int main() {
 //    string pathOfFile = "../hello.txt";
 //    //readFromFile(pathOfFile);
 //    //writeToEndOfFile(pathOfFile, 3);
-//    SymbolCounter(pathOfFile);
-//    SubstringFinder(pathOfFile);
+//    задание 2:
+//
+//    SymbolCounter("../hello.txt");
+//    задание 3:
+//    SubstringFinder("../hello.txt", "../findResult");
+//    Вспомогательный файл
 //    CreateFileForTaskFour("../src", "rezult", 5);
-    CreateFileForTaskFour("../src", "test.txt", 5);
 
-    // ReverseNumberOfList("../rezult");
-    ReverseNumberOfList("../test.txt");
+//    задание 4:
+//    CreateFileForTaskFour("../src", "test.txt", 5);
+//    ReverseNumberOfList("../test.txt");
+
+//    задание 6:  ../data
+//    Encoder("encrypted");
+//    Encoder("decrypted");
+
 }
