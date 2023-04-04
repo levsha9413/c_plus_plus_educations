@@ -3,4 +3,4 @@ project(c_plus_plus)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(c_plus_plus lr6.cpp)
+add_executable(c_plus_plus Text.h lr6.cpp)
