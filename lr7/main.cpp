@@ -11,15 +11,14 @@ using namespace std;
 
 void replaceEmployer(Staff employee, string newEmployer);
 int main(){
-    Staff x("Иван","Иванов","Иванович","ООО Зебра", "01.02.2022");
-    cout << x.getName() << '\n';
-    Tester y("Иван",
+
+    Tester ivan("Иван",
              "Иванов",
              "Иванович",
              "ООО Зебра",
              "01.02.2022",
              7, 3, 1);
-    cout << y.getAverageGrade() << "\n";
+    cout << ivan.getAverageGrade() << "\n";
 
     Developer mike("Михаил",
                    "Ливанов",
@@ -30,6 +29,8 @@ int main(){
 
     cout << "Средний бал разработчика " << mike.getName() << " = " << mike.getAverageGrade() << '\n';
     replaceEmployer(mike, "ООО Зебра");
+    replaceEmployer(ivan, "ООО КИТ");
+
 }
 
 void replaceEmployer(Staff employee, string newEmployer){
