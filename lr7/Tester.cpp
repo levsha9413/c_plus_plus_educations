@@ -28,7 +28,7 @@ int Tester::getProductSkills() const {
     return productSkills;
 }
 
-float Tester::getAverageGrade(){
+float Tester::getAverageGrade() const{
    return (Tester::communication + Tester::productSkills + Tester::getTestSkills())/3;
 }
 

@@ -29,7 +29,7 @@ public:
 
     int getProductSkills() const;
 
-    float getAverageGrade();
+    float getAverageGrade() const;
 };
 
 

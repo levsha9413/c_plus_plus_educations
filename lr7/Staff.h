@@ -40,7 +40,7 @@ public:
     Staff(const string &name, const string &surname, const string &patronymic, const string &employer,
           const string &dateOfStartWork);
 
-    virtual float getAverageGrade(){};
+    virtual float getAverageGrade() const{};
 
 
 
