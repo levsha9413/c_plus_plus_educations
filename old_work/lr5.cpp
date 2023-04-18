@@ -237,7 +237,7 @@ int main() {
 //    ReverseNumberOfList("../test.txt");
 
 //    задание 6:  ../data
-//    Encoder("encrypted");
+    Encoder("encrypted");
 //    Encoder("decrypted");
 
 }
