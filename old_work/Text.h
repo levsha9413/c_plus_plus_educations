@@ -12,7 +12,7 @@ private:
     char *str;
     int length;
 public:
-    Text(){
+    otText(){
       length = 0;
       str = NULL;
     }
