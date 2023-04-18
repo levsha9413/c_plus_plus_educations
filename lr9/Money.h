@@ -12,6 +12,7 @@ private:
     int cents;
 public:
     Money(int _dollars, int _cents);
+    Money();
     int operator>(const Money&) const;
     friend ostream& operator <<(ostream&, Money&);
 };

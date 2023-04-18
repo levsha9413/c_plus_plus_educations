@@ -9,6 +9,8 @@ Money::Money(int _dollars, int _cents)  {
     cents = _cents;
 }
 
+Money::Money(){}
+
 int Money::operator>(const Money& amt) const {
     return (dollars > amt.dollars) || (dollars == amt.dollars && cents > amt.cents);
 }
