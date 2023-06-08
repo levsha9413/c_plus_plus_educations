@@ -26,7 +26,7 @@ public:
     wxButton *btnMinus;
     wxPanel *parentPanel;
     wxButton *exitButton;
-    vector <Staff> staffList; //
+    vector <Staff> staffList={};
 
     wxStaticText *nameLabel;
     wxTextCtrl *nameInput;

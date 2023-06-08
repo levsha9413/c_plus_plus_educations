@@ -63,30 +63,30 @@ LeftPanel::LeftPanel(wxPanel *parent)
     systemSkillsInput = new wxTextCtrl(this, -1, "", wxPoint(100,310),
                                wxSize(150,25), 0, wxDefaultValidator, "systemSkillsInput");
 
-////    languageSkillsLabel = new wxStaticText(this, -1, "Language Skill:", wxPoint(10,360),
-////                                         wxDefaultSize, 0, "languageSkillsLabel");
-////    languageSkillsInput = new wxTextCtrl(this, -1, "", wxPoint(100,360),
-////                                       wxSize(150,25), 0, wxDefaultValidator, "languageSkillsInput");
-//
-//   // dataBaseSkillsLabel = new wxStaticText(this, -1, "DB Skill:", wxPoint(10,410),
-//                                           wxDefaultSize, 0, "dataBaseSkillsLabel");
-//   // dataBaseSkillsInput = new wxTextCtrl(this, -1, "", wxPoint(100,410),
-//                                         wxSize(150,25), 0, wxDefaultValidator, "dataBaseSkillsInput");
+    languageSkillsLabel = new wxStaticText(this, -1, "Language Skill:", wxPoint(10,360),
+                                         wxDefaultSize, 0, "languageSkillsLabel");
+    languageSkillsInput = new wxTextCtrl(this, -1, "", wxPoint(100,360),
+                                       wxSize(150,25), 0, wxDefaultValidator, "languageSkillsInput");
+
+    dataBaseSkillsLabel = new wxStaticText(this, -1, "DB Skill:", wxPoint(10,410),
+                                           wxDefaultSize, 0, "dataBaseSkillsLabel");
+    dataBaseSkillsInput = new wxTextCtrl(this, -1, "", wxPoint(100,410),
+                                         wxSize(150,25), 0, wxDefaultValidator, "dataBaseSkillsInput");
 
     communicationSkillsLabel = new wxStaticText(this, -1, "Communication Skill:", wxPoint(10,310),
                                            wxDefaultSize, 0, "communicationSkillsLabel");
     communicationSkillsInput = new wxTextCtrl(this, -1, "", wxPoint(100,310),
                                          wxSize(150,25), 0, wxDefaultValidator, "communicationSkillsInput");
 
-//   // testSkillsLabel = new wxStaticText(this, -1, "Test Skill:", wxPoint(10,360),
-//                                                wxDefaultSize, 0, "testSkillsLabel");
-//   // testSkillsInput = new wxTextCtrl(this, -1, "", wxPoint(100,360),
-//                                              wxSize(150,25), 0, wxDefaultValidator, "testSkillsInput");
-//
-//   // productBaseSkillsLabel = new wxStaticText(this, -1, "Product Skill:", wxPoint(10,410),
-//                                       wxDefaultSize, 0, "productBaseSkillsLabel");
-//   // productBaseSkillsInput = new wxTextCtrl(this, -1, "", wxPoint(100,410),
-//                                     wxSize(150,25), 0, wxDefaultValidator, "productBaseSkillsInput");
+    testSkillsLabel = new wxStaticText(this, -1, "Test Skill:", wxPoint(10,360),
+                                                wxDefaultSize, 0, "testSkillsLabel");
+    testSkillsInput = new wxTextCtrl(this, -1, "", wxPoint(100,360),
+                                              wxSize(150,25), 0, wxDefaultValidator, "testSkillsInput");
+
+    productBaseSkillsLabel = new wxStaticText(this, -1, "Product Skill:", wxPoint(10,410),
+                                       wxDefaultSize, 0, "productBaseSkillsLabel");
+    productBaseSkillsInput = new wxTextCtrl(this, -1, "", wxPoint(100,410),
+                                     wxSize(150,25), 0, wxDefaultValidator, "productBaseSkillsInput");
 
 
     btnPlus = new wxButton(this, ID_PLUS, wxT("+"), wxPoint(10,510));
@@ -95,9 +95,16 @@ LeftPanel::LeftPanel(wxPanel *parent)
 
 
     btnPlus->Bind(wxEVT_BUTTON, &LeftPanel::OnPlus, this);
-    btnMinus->Bind(wxEVT_BUTTON, &LeftPanel::OnMinus, this);
+  //  btnMinus->Bind(wxEVT_BUTTON, &LeftPanel::OnMinus, this);
     exitButton->Bind(wxEVT_BUTTON, &LeftPanel::onExit, this);
     choiceStaffCategory->Bind(wxEVT_CHOICE, &LeftPanel::ChoiceStaffSelected, this);
+
+    communicationSkillsLabel->Hide();
+    communicationSkillsInput->Hide();
+    testSkillsLabel->Hide();
+    testSkillsInput->Hide();
+    productBaseSkillsLabel->Hide();
+    productBaseSkillsInput->Hide();
 
 }
 
@@ -109,32 +116,32 @@ void LeftPanel::ChoiceStaffSelected(wxCommandEvent &event){
             case 0:
                 systemSkillsLabel->Show();
                 systemSkillsInput->Show();
-//                languageSkillsLabel->Show();
-//                languageSkillsInput->Show();
-//                dataBaseSkillsLabel->Show();
-//                dataBaseSkillsInput->Show();
+                languageSkillsLabel->Show();
+                languageSkillsInput->Show();
+                dataBaseSkillsLabel->Show();
+                dataBaseSkillsInput->Show();
 
                 communicationSkillsLabel->Hide();
                 communicationSkillsInput->Hide();
-//                testSkillsLabel->Hide();
-//                testSkillsInput->Hide();
-//                productBaseSkillsLabel->Hide();
-//                productBaseSkillsInput->Hide();
+                testSkillsLabel->Hide();
+                testSkillsInput->Hide();
+                productBaseSkillsLabel->Hide();
+                productBaseSkillsInput->Hide();
                 break;
             case 1:
                 systemSkillsLabel->Hide();
                 systemSkillsInput->Hide();
-//                languageSkillsLabel->Hide();
-//                languageSkillsInput->Hide();
-//                dataBaseSkillsLabel->Hide();
-//                dataBaseSkillsInput->Hide();
+                languageSkillsLabel->Hide();
+                languageSkillsInput->Hide();
+                dataBaseSkillsLabel->Hide();
+                dataBaseSkillsInput->Hide();
 
                 communicationSkillsLabel->Show();
                 communicationSkillsInput->Show();
-//                testSkillsLabel->Show();
-//                testSkillsInput->Show();
-//                productBaseSkillsLabel->Show();
-//                productBaseSkillsInput->Show();
+                testSkillsLabel->Show();
+                testSkillsInput->Show();
+                productBaseSkillsLabel->Show();
+                productBaseSkillsInput->Show();
                 break;
         }
     }
