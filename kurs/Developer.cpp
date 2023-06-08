@@ -5,9 +5,9 @@
 #include "Developer.h"
 
 Developer::Developer(const string &name, const string &surname, const string &patronymic, const string &employer,
-                     const wxDateTime::wxDateTime_t day, const wxDateTime::Month month, const int year,
+                     const wxDateTime date,
                      float systemSkills, float languageSkills, float dataBaseSkills)
-        : Staff(name, surname, patronymic, employer, day, month, year), systemSkills(systemSkills),
+        : Staff(name, surname, patronymic, employer, date), systemSkills(systemSkills),
           languageSkills(languageSkills), dataBaseSkills(dataBaseSkills) {
 
 }

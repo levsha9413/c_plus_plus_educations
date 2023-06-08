@@ -22,6 +22,8 @@ wxIMPLEMENT_APP(MyApp);
 
 bool MyApp::OnInit()
 {
+    wxLocale locale;
+    locale.Init(wxLANGUAGE_DEFAULT);
     StartWin *frame = new StartWin();
     frame->Show(true);
     return true;

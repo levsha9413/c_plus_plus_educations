@@ -41,6 +41,22 @@ public:
     wxStaticText *choiceStaffCategoryLabel;
     wxChoice *choiceStaffCategory;
 
+    //Поля скилов Developer
+    wxStaticText *systemSkillsLabel;
+    wxTextCtrl *systemSkillsInput;
+    wxStaticText *languageSkillsLabel;
+    wxTextCtrl *languageSkillsInput;
+    wxStaticText *dataBaseSkillsLabel;
+    wxTextCtrl *dataBaseSkillsInput;
+
+    //Поля скилов Tester
+    wxStaticText *communicationSkillsLabel;
+    wxTextCtrl *communicationSkillsInput;
+    wxStaticText *testSkillsLabel;
+    wxTextCtrl *testSkillsInput;
+    wxStaticText *productBaseSkillsLabel;
+    wxTextCtrl *productBaseSkillsInput;
+
 
 
 
@@ -49,6 +65,9 @@ private:
     void OnPlus(wxCommandEvent &event);
     void OnMinus(wxCommandEvent &event);
     void onExit(wxCommandEvent &event);
+    void ChoiceStaffSelected(wxCommandEvent &event);
+    wxArrayString staffCategoryes;
+    wxArrayString employeList;
 
 };
 

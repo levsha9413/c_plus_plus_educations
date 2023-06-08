@@ -40,21 +40,25 @@ void Staff::setEmployer(const string &employer) {
     Staff::employer = employer;
 }
 
-void Staff::setDateOfStartWork(const wxDateTime::wxDateTime_t day, const wxDateTime::Month month, const int year) {
-
-    Staff::startWork.Set(day, month, year);
+void Staff::setDateOfStartWork(wxDateTime date) {
+    if(date.IsValid()){
+        wxPuts("Valid : ");
+    }else{
+        wxPuts("No Valid : ");
+    };
+    Staff::startWork = date;
     Staff::dateOfStartWork = startWork.FormatDate();
 }
 
 Staff::Staff(const string &name, const string &surname, const string &patronymic, const string &employer,
-             const wxDateTime::wxDateTime_t day, const wxDateTime::Month month, const int year)
+             const wxDateTime date)
              : name(name), surname(surname), patronymic(patronymic), employer(employer),
-               startWork(day, month, year) {
+               startWork(date) {
     Staff::setName(name);
     Staff::setSurname(surname);
     Staff::setPatronymic(patronymic);
     Staff::setEmployer(employer);
-    Staff::setDateOfStartWork(day, month, year);
+    Staff::setDateOfStartWork(date);
 
 
 }

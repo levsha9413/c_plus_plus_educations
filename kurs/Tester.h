@@ -15,7 +15,7 @@ private:
     float productSkills = 3;
 public:
     Tester(const string &name, const string &surname, const string &patronymic, const string &employer,
-           const wxDateTime::wxDateTime_t day, const wxDateTime::Month month, const int year,
+           const wxDateTime date,
            float _communication, float _testSkills, float _productSkills);
 
     void setCommunication(int communication);

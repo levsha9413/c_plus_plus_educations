@@ -14,7 +14,7 @@ private:
 
 public:
     Developer(const string &name, const string &surname, const string &patronymic, const string &employer,
-              const wxDateTime::wxDateTime_t day, const wxDateTime::Month month, const int year,
+              const wxDateTime date,
               float systemSkills, float languageSkills, float dataBaseSkills);
 
     void setSystemSkills(float systemSkills);

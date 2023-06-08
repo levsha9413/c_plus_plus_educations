@@ -7,6 +7,7 @@
 
 #include <string>
 #include <wx/datetime.h>
+#include <wx/wx.h>
 
 using namespace std;
 
@@ -39,10 +40,9 @@ public:
 
     void setEmployer(const string &employer);
 
-    void setDateOfStartWork(const wxDateTime::wxDateTime_t day, const wxDateTime::Month month, const int year);
+    void setDateOfStartWork(wxDateTime date);
 
-    Staff(const string &name, const string &surname, const string &patronymic, const string &employer,
-          const wxDateTime::wxDateTime_t day, const wxDateTime::Month month, const int year);
+    Staff(const string &name, const string &surname, const string &patronymic, const string &employer, const wxDateTime date);
 
     virtual float getAverageGrade() const{};
 

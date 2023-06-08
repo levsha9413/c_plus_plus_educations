@@ -33,10 +33,9 @@ float Tester::getAverageGrade() const{
 }
 
 Tester::Tester(const string &name, const string &surname, const string &patronymic, const string &employer,
-               const wxDateTime::wxDateTime_t day, const wxDateTime::Month month, const int year,
+               const wxDateTime date,
                float _communication, float _testSkills, float _productSkills) :
-        Staff(name, surname, patronymic, employer, day, month, year) {
-    Staff(name, surname, patronymic, employer, day, month, year);
+        Staff(name, surname, patronymic, employer, date) {
    Tester::setCommunication(_communication);
    Tester::setTestSkills(_testSkills);
    Tester::setProductSkills(_productSkills);
