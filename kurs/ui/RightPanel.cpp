@@ -3,6 +3,8 @@
 //
 
 #include "RightPanel.h"
+#include "StartWin.h"
+
 
 
 RightPanel::RightPanel(wxPanel *parent) :
@@ -12,6 +14,7 @@ RightPanel::RightPanel(wxPanel *parent) :
                                 NULL, wxLB_HSCROLL,
                                 wxDefaultValidator, "List of Staff");
 
+    listOfStaff->Bind(wxEVT_LISTBOX_DCLICK, &RightPanel::clickOnStaff, this);
 
 
 }
@@ -20,5 +23,17 @@ void RightPanel::addStaff(wxString staff) {
     staffArray.Add(staff);
     listOfStaff->InsertItems(staffArray, 0);
     staffArray.Clear();
-};
+}
+
+void RightPanel::clickOnStaff(wxCommandEvent& event) {
+    StartWin *startWin = (StartWin *) parentPanel -> GetParent();
+
+    wxPuts("dddd");
+    FormWin *StaffCard = new FormWin(this, wxID_ANY, "test", wxPoint(10,10), wxDefaultSize,
+                                     wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER, "Dialog",
+                                     startWin->leftPanel->staffList[listOfStaff->GetSelection()]);
+    StaffCard->Show(true);
+}
+
+
 

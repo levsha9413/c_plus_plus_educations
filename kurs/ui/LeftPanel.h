@@ -23,7 +23,6 @@ public:
     LeftPanel(wxPanel *parent);
 
     wxButton *btnPlus;
-    wxButton *btnMinus;
     wxPanel *parentPanel;
     wxButton *exitButton;
     vector <Staff> staffList={};
@@ -41,7 +40,7 @@ public:
     wxStaticText *choiceStaffCategoryLabel;
     wxChoice *choiceStaffCategory;
 
-    //Поля скилов Developer
+    //Поля навыков Developer
     wxStaticText *systemSkillsLabel;
     wxTextCtrl *systemSkillsInput;
     wxStaticText *languageSkillsLabel;
@@ -49,7 +48,7 @@ public:
     wxStaticText *dataBaseSkillsLabel;
     wxTextCtrl *dataBaseSkillsInput;
 
-    //Поля скилов Tester
+    //Поля навыков Tester
     wxStaticText *communicationSkillsLabel;
     wxTextCtrl *communicationSkillsInput;
     wxStaticText *testSkillsLabel;

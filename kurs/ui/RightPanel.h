@@ -10,15 +10,20 @@
 #include <wx/button.h>
 #include <wx/wx.h>
 #include <wx/listbox.h>
+#include "FormWin.h"
+#include "LeftPanel.h"
+#include <wx/panel.h>
 
 
 class RightPanel: public wxPanel {
 public:
     RightPanel(wxPanel *parent);
+    wxPanel *parentPanel;
     wxStaticText *textLabel;
     wxListBox *listOfStaff;
     wxArrayString staffArray; //вспомогательный массив для добавления элементов в ListBox
     void addStaff(wxString staff);
+    void clickOnStaff(wxCommandEvent& event);
 
 };
 

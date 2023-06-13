@@ -90,12 +90,10 @@ LeftPanel::LeftPanel(wxPanel *parent)
 
 
     btnPlus = new wxButton(this, ID_PLUS, wxT("+"), wxPoint(10,510));
-    //btnMinus = new wxButton(this, ID_MINUS, wxT("-"), wxPoint(100,510));
     exitButton = new wxButton(this, wxID_EXIT, wxT("Выход"), wxPoint(10, 560));
 
 
     btnPlus->Bind(wxEVT_BUTTON, &LeftPanel::OnPlus, this);
-  //  btnMinus->Bind(wxEVT_BUTTON, &LeftPanel::OnMinus, this);
     exitButton->Bind(wxEVT_BUTTON, &LeftPanel::onExit, this);
     choiceStaffCategory->Bind(wxEVT_CHOICE, &LeftPanel::ChoiceStaffSelected, this);
 
@@ -162,6 +160,8 @@ void LeftPanel::OnPlus(wxCommandEvent &event) {
                                          2, 4, 2));
             startWin->rightPanel->addStaff(staffList[staffList.size()-1].getSurname());
             sernameInput->SetValue("");
+            nameInput->SetValue("");
+            patronymicInput->SetValue("");
             break;
         case 1:
             staffList.push_back(Tester(string(nameInput->GetLineText(0)),
@@ -171,9 +171,13 @@ void LeftPanel::OnPlus(wxCommandEvent &event) {
                                        datepicker->GetValue(),
                                        7, 3, 1));
             startWin->rightPanel->addStaff(staffList[staffList.size()-1].getSurname());
+            sernameInput->SetValue("");
+            nameInput->SetValue("");
+            patronymicInput->SetValue("");
             break;
 
     }
+
     wxPrintf( "Выбран пункт %d\n", choiceStaffCategory->GetSelection());
 }
 

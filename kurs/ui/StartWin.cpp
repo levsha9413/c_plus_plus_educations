@@ -13,8 +13,6 @@ StartWin::StartWin():wxFrame(NULL, wxID_ANY, "Start window") {
     wxPanel* panel = new wxPanel(this, wxID_ANY, wxPoint(10,50), wxSize(1000,1000));
 
 
-    //Старый вариант:
-    //Connect(wxID_EXIT, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(StartWin::onExit));
 
     wxBoxSizer* hBox = new wxBoxSizer(wxHORIZONTAL);
     leftPanel = new LeftPanel(panel);
