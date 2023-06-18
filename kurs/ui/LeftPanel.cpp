@@ -152,25 +152,25 @@ void LeftPanel::OnPlus(wxCommandEvent &event) {
     startWin -> rightPanel -> textLabel -> SetLabel(wxString::Format(wxT("%d"), count));
     switch (choiceStaffCategory->GetSelection()){
         case 0:
-            staffList.push_back(Developer(string(nameInput->GetLineText(0)),
+            staffList.push_back(new Developer(string(nameInput->GetLineText(0)),
                                           string(sernameInput->GetLineText(0)),
                                           string(patronymicInput->GetLineText(0)),
                                           string(employeList[employerList->GetSelection()]),
                                           datepicker->GetValue(),
-                                         2, 4, 2));
-            startWin->rightPanel->addStaff(staffList[staffList.size()-1].getSurname());
+                                         1, 2, 3));
+            startWin->rightPanel->addStaff(staffList[staffList.size()-1]->getSurname());
             sernameInput->SetValue("");
             nameInput->SetValue("");
             patronymicInput->SetValue("");
             break;
         case 1:
-            staffList.push_back(Tester(string(nameInput->GetLineText(0)),
+            staffList.push_back(new Tester(string(nameInput->GetLineText(0)),
                                        string(sernameInput->GetLineText(0)),
                                        string(patronymicInput->GetLineText(0)),
                                        string(employeList[employerList->GetSelection()]),
                                        datepicker->GetValue(),
                                        7, 3, 1));
-            startWin->rightPanel->addStaff(staffList[staffList.size()-1].getSurname());
+            startWin->rightPanel->addStaff((staffList[staffList.size()-1])->getSurname());
             sernameInput->SetValue("");
             nameInput->SetValue("");
             patronymicInput->SetValue("");

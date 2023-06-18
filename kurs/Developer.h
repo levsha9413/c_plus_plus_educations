@@ -29,7 +29,7 @@ public:
 
     float getDataBaseSkills() const;
 
-    float getAverageGrade() const;
+    string getAverageGrade() const;
 
 };
 

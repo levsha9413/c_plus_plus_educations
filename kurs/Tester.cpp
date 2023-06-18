@@ -1,8 +1,10 @@
 //
 // Created by pbochkarev on 09.04.2023.
 //
-
+#include <iomanip>
 #include "Tester.h"
+#include <sstream>
+
 
 void Tester::setCommunication(int communication) {
     Tester::communication = communication;
@@ -28,8 +30,12 @@ int Tester::getProductSkills() const {
     return productSkills;
 }
 
-float Tester::getAverageGrade() const{
-   return (Tester::communication + Tester::productSkills + Tester::getTestSkills())/3;
+string Tester::getAverageGrade() const{
+   float avg =  (Tester::communication + Tester::productSkills + Tester::getTestSkills())/3;
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision(2) << round(avg*10)/10;
+    std::string result = ss.str();
+    return result;
 }
 
 Tester::Tester(const string &name, const string &surname, const string &patronymic, const string &employer,

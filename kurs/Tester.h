@@ -30,7 +30,7 @@ public:
 
     int getProductSkills() const;
 
-    float getAverageGrade() const;
+    string getAverageGrade() const;
 };
 
 

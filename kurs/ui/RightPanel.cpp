@@ -15,7 +15,7 @@ RightPanel::RightPanel(wxPanel *parent) :
                                 wxDefaultValidator, "List of Staff");
 
     listOfStaff->Bind(wxEVT_LISTBOX_DCLICK, &RightPanel::clickOnStaff, this);
-
+    parentPanel = parent;
 
 }
 
@@ -29,7 +29,7 @@ void RightPanel::clickOnStaff(wxCommandEvent& event) {
     StartWin *startWin = (StartWin *) parentPanel -> GetParent();
 
     wxPuts("dddd");
-    FormWin *StaffCard = new FormWin(this, wxID_ANY, "test", wxPoint(10,10), wxDefaultSize,
+    FormWin *StaffCard = new FormWin(this, wxID_ANY, "Information of Employee", wxPoint(10,10), wxDefaultSize,
                                      wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER, "Dialog",
                                      startWin->leftPanel->staffList[listOfStaff->GetSelection()]);
     StaffCard->Show(true);

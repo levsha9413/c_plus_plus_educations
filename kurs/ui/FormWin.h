@@ -19,7 +19,7 @@
 class FormWin: public wxDialog{
 public:
     FormWin(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size, long style,
-            const wxString &name, Staff employee);
+            const wxString &name, Staff* employee);
 
     ~FormWin() override;
     wxButton *closeButton;

@@ -44,7 +44,7 @@ public:
 
     Staff(const string &name, const string &surname, const string &patronymic, const string &employer, const wxDateTime date);
 
-    virtual float getAverageGrade() const{};
+    virtual string getAverageGrade() const{};
 
     const wxDateTime &getStartWork() const;
 

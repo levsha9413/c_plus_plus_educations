@@ -3,6 +3,9 @@
 //
 
 #include "Developer.h"
+#include <sstream>
+#include <iomanip>
+#include <cmath>
 
 Developer::Developer(const string &name, const string &surname, const string &patronymic, const string &employer,
                      const wxDateTime date,
@@ -36,6 +39,10 @@ float Developer::getDataBaseSkills() const {
     return dataBaseSkills;
 }
 
-float Developer::getAverageGrade() const {
-    return (Developer::getSystemSkills()+Developer::getDataBaseSkills()+Developer::getLanguageSkills())/3;
+string Developer::getAverageGrade() const {
+    float avg = (Developer::getSystemSkills()+Developer::getDataBaseSkills()+Developer::getLanguageSkills())/3;
+    std::stringstream ss;
+    ss << std::fixed << std::setprecision(2) << round(avg*10)/10;
+    std::string result = ss.str();
+    return result;
 }
